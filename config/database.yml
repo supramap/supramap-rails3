@@ -1,0 +1,18 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: supramap
+  username: supramap
+  password: supram@p1
+  host: localhost
+  pool: 5
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  host: xio29.osc.edu
+  database: supramap_webclient
+  pool: 5
+  username: supramap_admin
+  password: nosnoraA
+

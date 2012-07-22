@@ -1,0 +1,28 @@
+<%= error_messages_for "user",
+:header_message => "Error in Adding User",
+:message => "Sorry, but there were some problems with some of fields." %>
+
+<fieldset>
+	<legend>Enter User Details</legend>
+	
+	<%= form_for :user do |form| %>
+		<table>
+			<tr><td>First Name:</td><td><%= form.text_field :firstname, :size => 20 %></td></tr>
+			<tr><td>Last Name:</td><td><%= form.text_field :lastname, :size => 20 %></td></tr>
+			<tr><td>Username:</td><td><%= form.text_field :login, :size => 20 %></td></tr>
+            <tr><td>E-Mail:</td><td><%= form.text_field :email, :size => 20 %></td></tr>
+			<tr><td>Password:</td><td><%= form.password_field :password, :size => 20 %></td></tr>
+			<tr><td>Confirm:</td><td><%= form.password_field :password_confirmation, :size => 20 %></td></tr>
+			<tr><td>Administrator:</td><td><%= form.check_box :admin %></td></tr>
+			<tr><td>Authorize:</td><td><%= form.check_box :auth %></td></tr>
+		</table>
+		<%= submit_tag "Add User", :class => "submit" %>
+	<% end%>
+</fieldset>
+
+<table>
+	<tr>
+		<td><%= button_to "List users", :controller => "login", :action => "list_users" %></td>
+		<td><%= button_to "Back to projects", :controller => "supramap", :action => "projects" %></td>
+	</tr>
+</table>

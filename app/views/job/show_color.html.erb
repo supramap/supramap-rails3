@@ -1,0 +1,38 @@
+<% title("Color KML") %>
+<script type="text/javascript">
+    function toggleAlignment(colorType) {
+        el = document.getElementById("job_color_alignment");
+        if( colorType == 1) {
+            el.value = "";
+            el.disabled = true;
+        } else {
+            el.disabled = false;
+            el.focus();
+        }
+    }
+</script>
+
+<style>
+  .color-kml {
+      text-align: left;
+      padding-left: 30px;
+      margin-bottom: 20px;
+  }
+</style>
+<div><%= error_messages_for 'job' %></div>
+<fieldset>
+  <legend>color kml</legend>
+  <%= form_for @job, :url => color_kml_url(@job) do |f| %>
+      <div class="color-kml">
+        job:&nbsp;&nbsp;<%= @job.name %><br/><br/>
+        <%= f.radio_button :color_type, "1", :onclick => "toggleAlignment(1);" %>
+        &nbsp;Color branches based on a categorical data file<br/>
+        <%= f.radio_button :color_type, "2", :onclick => "toggleAlignment(2);" %>
+        &nbsp;Color branches based on an aligned column (starting at 1)
+        <%= f.text_field :color_alignment, :size => 5 %>
+        <br/>
+      </div>
+      <%= submit_tag "Color KML", :class => "submit" %>
+      <%= submit_tag "Cancel", :name => "cancel", :class => "submit" %>
+<% end %>
+</fieldset>

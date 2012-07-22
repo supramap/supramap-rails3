@@ -1,0 +1,1 @@
+FILE_SERVER_ROOT = "#{Rails.root}/public/files"

@@ -1,0 +1,14 @@
+tmp/**/*
+.DS_Store
+public/files/**/*
+*.ipr
+*.iws
+*.iml
+*.idea
+*.generators
+.project
+.loadpath
+log/*.log
+.rvmrc
+
+

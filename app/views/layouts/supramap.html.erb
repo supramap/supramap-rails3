@@ -1,0 +1,94 @@
+<!DOChtml PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="A web based application to combine genomic sequences with other information to provide maps of the movement of pathogens and key mutations among pathogensi, such as those that confer resistance to drugs or the ability to jump from animals to humans" />
+    <meta name="keywords" content="supramap, phylogeny, virtual globe, SARS, h5n1, avian invluenza, phylogeography,  biogeography, genetic mutation, SARS-CoV, host shift, KML, Google Earth, types of mutations, supermap, bird flu, mutation, gene mutation, sars virus" />
+    <%= stylesheet_link_tag 'application' %>
+    <%= javascript_include_tag "application" %>
+    <title>SupraMap(s) :: <%= h(@page_title) %></title>
+    <!--[if lt IE 7.]>
+    <script defer type="text/javascript" src="http://homepage.ntlworld.com/bobosola/pngfix.js"></script>
+    <![endif]-->
+	<script src="http://www.google.com/jsapi?key=ABQIAAAAd_tmRg3zO4Dx3qy9eol3CxS2MMeSBqUXGdiXTBL-DmkcuSXkRxR3kz4_jti3BNF71vESx986kXtUBg"></script>
+	<script>
+		google.load("earth", "1");
+		
+		var ge = null;
+		
+		function init() {
+		  google.earth.createInstance("map3d", initCallback, failureCallback);
+		}
+		
+		function initCallback(object) {
+			ge = object;
+			ge.getWindow().setVisibility(true);
+			ge.getNavigationControl().setVisibility(ge.VISIBILITY_SHOW);
+			
+			var nl = ge.createNetworkLink("");
+			var link = ge.createLink("");
+			if(document.getElementById("home")) link.setHref("http://bmi.osu.edu/~janies/H1N1/H1N1_NA.kmz");
+			if(document.getElementById("publications")) link.setHref("http://supramap.osu.edu/h5n1_677/h5n1_677.kmz");
+			nl.setLink(link);
+			nl.setVisibility(true);
+			ge.getGlobe().getFeatures().appendChild(nl);
+                        var b = ge.createHtmlStringBalloon('');
+                        b.setMaxWidth(500);
+                        b.setContentString(
+                        '<b>Evolution and Spread of H1N1</b>' +
+                        '<p>Data provided by contributors to GISAID.org and NIH\'s Genbank.</p>' +
+                        '<p>Phylogenetic mapping by <a href="http://supramap.osu.edu">Supramap.osu.edu</a></p>'); 
+                        //ge.setBalloon(b);
+		}
+		
+		function failureCallback(object) {
+		}
+	</script>
+  </head>
+  <body id="<%= h(@page_id) %>" onload="init()">
+    <div id="header">
+      <h1>SupraMap</h1>
+
+      <div id="nav-border">&nbsp;</div>
+      <div id="logo">
+	<!-- supramap -->
+	<%=image_tag 'supermap.png'%>
+        <span>SupraMap</span>
+      </div>
+      <div id="navigation">
+        <ul>
+          <li><%= link_to "home", { :controller => "supramap", :action => "home" }, { :class => "home" } %></li>
+          <li><%= link_to "make a supramap", { :controller => "supramap", :action => "make_a_supramap" }, { :class => "make-a-supramap" } %></li>
+           <li><%= link_to "csv tre to kml", { :controller => "supramap", :action => "csv_tre_to_kml" }, { :class => "make-a-supramap" } %></li>
+          <li><%= link_to "about", { :controller => "supramap", :action => "about" }, { :class => "about" } %></li>
+          <li><%= link_to "tutorials", { :controller => "supramap", :action => "tutorials" }, { :class => "tutorials" } %></li>
+          <li><%= link_to "theory", { :controller => "supramap", :action => "theory" }, { :class => "theory" } %></li>
+          <li><%= link_to "publications", { :controller => "supramap", :action => "publications" }, { :class => "publications" } %></li>
+          <li><%= link_to "contact us", { :controller => "supramap", :action => "contact_us" }, { :class => "contact-us" } %></li>
+	  <li><%= link_to "acknowledgements", { :controller => "supramap", :action => "acknowledgements" }, { :class => "acknowledgements" } %></li>
+        </ul>
+      </div>
+    </div>
+    <div id="wrapper">
+      <div id="content">
+        <div id="page">
+          <div id="notice"><%= flash[:notice] %></div>
+          <%= yield %>
+        </div>
+      </div>
+      <div id="rounded-corners">&nbsp;</div>
+      <div id="rounded-corners-right">&nbsp;</div>
+    </div>
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-420282-2";
+      urchinTracker();
+      </script>
+    </body>
+    <% if user = User.find_by_id(session[:user_id]) %>
+      <p id="logout"><%= link_to "Logout", :controller => "login", :action => "logout" %></p>
+      <% if user.admin? %>
+        <p id="user_admin"><%= link_to "Admin", :controller => "login", :action => "admin" %></p>
+      <% end %>
+    <% end %>
+  </html>
