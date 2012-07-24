@@ -14,7 +14,7 @@ class Job < ActiveRecord::Base
   validates :color_alignment, numericality:{ :only_integer => true } , :allow_nil => true
   validates_with JobValidator
 
-  scope :status, lambda { |s| {:conditions => {:status => s}} }
+  #scope :status, lambda { |s| {:conditions => {:status => s}} }
 
   after_create :create_job_dir
   after_destroy :delete_job_dir

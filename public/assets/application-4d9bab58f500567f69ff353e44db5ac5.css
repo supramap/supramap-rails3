@@ -1,0 +1,562 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+
+*/
+
+/* DYNAMIC BEHAVIOR */
+#nav-background{display:none;}
+#nav-supramap{display:none;}
+
+/* display of secondary navigation bars */
+#biomedical-informatics #nav-background{display:block;}
+#phylogenetics #nav-background{display:block;}
+#viral-evolution #nav-background{display:block;}
+#geographic-mapping #nav-background{display:block;}
+#intro #nav-supramap{display:block;}
+#demo #nav-supramap{display:block;}
+#tutorials #nav-supramap{display:block;}
+#examples #nav-supramap{display:block;}
+#documentation #nav-supramap{display:block;}
+
+/* highlighting of links to current page */
+#home .home {border:1px solid #252525; background:#151515;}
+#supramap .make-a-supramap {border:1px solid #252525; background:#151515;}
+#about .about {border:1px solid #252525; background:#151515;}
+#tutorials .tutorials {border:1px solid #252525; background:#151515;}
+#theory .theory {border:1px solid #252525; background:#151515;}
+#publications .publications {border:1px solid #252525; background:#151515;}
+#contact-us .contact-us {border:1px solid #252525; background:#151515;}
+/* globe image maps */
+
+#globe-nav{
+	width:600px;
+	height:602px;
+	margin:auto;
+	position:relative;
+	}
+#globe-nav ul{
+	list-style:none;
+	}
+#globe-nav a{
+	position:absolute;
+	height:90px;
+	font-size:0.1px;
+	text-decoration:none;
+	text-indent:-5000px;
+	}
+#globe-nav a:hover{
+	border:1px solid #aaa;
+	}
+#globe-nav .theory{
+	top:236px;
+	left:462px;
+	width:80px;
+	}
+#globe-nav .about{
+	top:83px;
+	left:408px;
+	width:80px;
+	}
+#globe-nav .tutorials{
+	top:217px;
+	left:277px;
+	width:96px;
+	}
+#globe-nav .publications{
+	top:320px;
+	left:93px;
+	width:125px;
+	}
+#globe-nav .contact-us{
+	top:470px;
+	left:268px;
+	width:114px;
+	}
+#globe-nav .make-a-supramap{
+	top:60px;
+	left:102px;
+	width:170px;
+	}
+#home #globe-nav{
+	background-image:url(../images/globe.jpg);
+	}
+#navigation{
+	margin:0 5%;
+	position:relative;
+	height:100%;
+	text-align:center;
+	overflow:hidden;
+	z-index:3;
+	}
+#nav-border{
+	position:absolute;
+	left:5%;
+	right:5%;
+	bottom:2.4em;
+	border-bottom:1px solid #202020;
+	}
+#navigation ul{
+	position:absolute;
+	bottom:0;
+	left:0;
+	width:100%;
+	padding:0.6em;
+	border-bottom: 1px solid #272727;
+	}
+#navigation ul li{
+	list-style:none;
+	display:inline;
+	}
+#navigation ul li a{
+	text-decoration:none;
+	color:#aaa;
+	padding:0.45em 1em 0.6em 1em;
+	}
+#navigation ul li a:hover{
+	text-decoration:underline;
+}
+#nav-background,#nav-supramap{
+	margin-top:-1.6em;
+	margin-bottom:2em;
+	text-align:center;
+	position:relative;
+	}
+#nav-background li, #nav-supramap li{
+	list-style:none;
+	display:inline;
+	}
+#nav-background li a, #nav-supramap li a{
+	text-decoration:none;
+	font-size:0.9em;
+	color:#888;
+	padding:0.6em 1em;
+	border:1px solid #272727;
+	border-top:none;
+	}
+#nav-background li a:hover, #nav-supramap li a:hover{
+	border:1px solid #444;
+	border-top:none;
+	background-color:#181818;
+	}
+body { background-color: #fff; color: #333; }
+
+body, p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   13px;
+  line-height: 18px;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a { color: #000; }
+a:visited { color: #666; }
+a:hover { color: #fff; background-color:#000; }
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+div.uploadStatus {
+  margin: 5px;
+}
+
+div.progressBar {
+  margin: 5px;
+}
+
+div.progressBar div.border {
+  background-color: #fff;
+  border: 1px solid gray;
+  width: 100%;
+}
+
+div.progressBar div.background {
+  background-color: #333;
+  height: 18px;
+  width: 0%;
+}
+
+@import url(globe-nav.css);
+@import url(dynamic-links.css);
+@import url(navigation.css);
+
+*	{
+	margin:0;
+	font-family:"Lucida Grande", Geneva, Arial, sans-serif;
+	}
+
+body{
+	background-image:url(background.jpg);
+	background-repeat:repeat-x;
+	background-position:top;
+	background-color:#101010;
+	font-size:90%;
+	}
+ul {
+	width: 600px;
+	margin:auto;
+	padding-left:2em;
+}
+
+#map3d_container *{
+	background-color:#fff;
+	color:#000;
+	border-color:#c8c8c8;
+	font-size:9pt;
+	}
+
+#header{
+	background-image:url(banner.jpg);
+	height:150px;
+	position:relative;
+	overflow:visible;
+	}
+
+h1	{
+	display:none;
+	}
+	
+#logo span{
+	display:none;
+	}
+#logo{
+	width:288px;
+	height:137px;
+	position:absolute;
+	right:4%;
+	bottom:5px;
+	z-index:2;
+	}
+#logo-img{
+	width:288px;
+	height:137px;
+	border:none;
+	}
+#content{
+	margin:0 5%;
+	padding:2em 4em;
+	background-color:#000;
+	min-height:200px;
+	height:auto !important;
+	height:200px;
+	color:#fff;
+	}
+
+#rounded-corners {
+	margin:0 5% 25px 5%;
+	background-image: url(content_bg.png);
+	height:28px;
+}
+
+#supramap #content, #START #content {
+	padding: 2em;
+	}
+h2	{/* deprecated */
+	margin-bottom:-0.6em;
+	font-weight:normal;
+	text-align:center;
+	font-size:1.5em;
+	line-height:2.7em;
+	color:#444;
+	}
+h3	{
+	color:#fff;
+	font-weight:normal;
+	max-width:650px;
+	margin:auto;
+	font-size:1.1em;
+	color:#999;
+	border-bottom:1px dotted #222;
+	}
+p,ol,#content_item	{
+	margin:1em auto;
+	line-height:1.6em;
+	color:#ddd;
+	max-width:600px;
+	}
+#supramap p {
+	margin: 1em auto;
+	line-height: 1.4em;
+	color: #ddd;
+	max-width: inherit;
+}
+#text-size a img{
+	border:none;
+	}
+a {
+	color:#2288FF;
+	text-decoration:none;
+	border-bottom:1px solid #333;
+}
+#home a{
+	border:none;
+}
+#demo-video{
+	text-align:center;
+	margin:0 0 2em 0;
+	}
+em	{
+	font-style:normal;
+	text-decoration:underline;
+	color:#fff;
+	}
+cite
+	{
+	font-size:0.9em;
+	}
+#publications cite
+	{
+	display:block;
+	padding:1em 4em;
+	border:1px solid #151515; border-left:none;border-right:none;
+	margin:0;
+	}
+
+#publications #page ul, #tutorials #page ul {
+	width: 600px;
+	margin:auto;
+	padding-left:2em;
+}
+
+td,th {
+	padding: 2px;
+	color:#fff
+}
+
+th {
+	background-color: #111;
+}
+
+table {
+	border: 1px solid #222;
+	margin:1em auto;
+	background-color:#000;
+}
+
+table#wide {
+	width: 90%;
+}
+
+
+table#project {
+  width: 400px;
+  border: none; 
+}
+
+td.right {
+  color: red;
+}
+
+.alignright {
+  float: right;
+}
+
+input[type='submit'] {
+	font-size: 0.8em;
+	background-color: #333;
+	border: 1px solid #666;
+	color: #fff;
+	padding:4px;
+	margin-right:2px;
+	margin-left:2px;
+	cursor:pointer;
+	float:left;
+}
+
+input:hover[type='submit']{
+	background-color: #222;
+}
+
+input[type='text'], input[type='password'], input[type='checkbox'], input[type='file'] {
+	border:none;
+	background-color:#ccc;
+	border:1px solid #400;
+	margin:2px;
+	padding:2px;
+}
+
+input[type='text']:focus, input[type='password']:focus, input[type='checkbox']:focus {
+	background-color:#ffa;
+}
+
+input[type='file'] {
+	display:inline;
+}
+
+.fieldWithErrors {
+	background-color: #700;
+}
+
+p#logout, p#user_admin {
+	position:absolute;
+	top:0px;
+	background-color:#111;
+	border: 1px solid #666;
+}
+
+p#logout a, p#user_admin a {
+	display:block;
+	padding: 3px 20px;
+	border:none;
+	text-align:center;
+	color: #ccc;
+}
+
+p#logout:hover, p#user_admin:hover {
+	border:1px solid #fff;
+}
+
+p#user_admin {
+	left:110px;
+	z-index:3;
+}
+p#logout {
+	left: 13px;
+	z-index:4;
+}
+
+fieldset {
+	border:2px solid #222;
+	padding:0 10px 10px 10px;
+	background-color:#0a0a0a;
+	width:50%;
+	min-width:400px;
+	margin:1em auto;
+	text-align:center;
+}
+
+legend {
+	border:1px solid#222;
+	padding:6px;
+	font-size:1.1em;
+}
+
+td {
+	text-align:left;
+	padding:3px;
+}
+
+td.job_files{
+	font-size:0.8em;
+	font-style:italic;
+}
+
+td.status {
+	color:#900;
+	text-align:center;
+}
+
+td.started_at {
+	font-size:0.9em;
+	color: #aaa;
+}
+
+td.jobs, td.files {
+	font-size: 0.9em;
+	text-align: center;
+	color:#999;
+}
+
+table.files, table.job {
+    width: 80%
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  	color: #333;
+  font-size: 12px;
+  list-style: square;
+}
+
+#news {
+	width: 600px;
+	border: 2px solid red;
+	margin:0 auto;
+	padding: 5px 5px 5px 5px;	
+	text-align: center;
+}
+
+#welcome {
+	margin:1em auto;
+	line-height:1.6em;
+	color:#ddd;
+	max-width:600px;
+}
+
+pre {
+	margin:1em auto;
+        max-width:600px;
+	font-family: Courier,Courier New;
+        line-height: 1.1em;
+        font-size:0.9em;
+	color:#9f9;
+}
