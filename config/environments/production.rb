@@ -1,6 +1,6 @@
 Supramap::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
-  config.action_controller.relative_url_root = "/sm"
+  #config.action_controller.relative_url_root = "/sm"
 
   # Code is not reloaded between requests
   config.cache_classes = true
