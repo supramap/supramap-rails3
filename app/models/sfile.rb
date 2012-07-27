@@ -35,7 +35,16 @@ class Sfile < ActiveRecord::Base
     write_attribute(:ext, ext)
     @ext = ext
   end
-  
+
+
+  def self.subset_file_types?(file_types, *other_file_types )
+    other_file_types.to_set.subset?(file_types.to_set)
+  end
+
+  def self.equal_file_types?(file_types, *other_file_types)
+    file_types.to_set == other_file_types.to_set
+  end
+
   private
 
   def correct_newlines(s)
@@ -61,4 +70,5 @@ class Sfile < ActiveRecord::Base
   def amino_chars_in_str?(str)
     !(str =~ /[EFILOPQZ\*]/i).nil?
   end
+
 end

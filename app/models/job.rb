@@ -14,8 +14,6 @@ class Job < ActiveRecord::Base
   validates :color_alignment, numericality:{ :only_integer => true } , :allow_nil => true
   validates_with JobValidator
 
-  #scope :status, lambda { |s| {:conditions => {:status => s}} }
-
   after_create :create_job_dir
   after_destroy :delete_job_dir
 
@@ -69,17 +67,17 @@ class Job < ActiveRecord::Base
       end
     }
 
-
+    file_types = sfiles.collect {|f| f.filetype}
+    poy_search = ""
+    unless Sfile.equal_file_types?(file_types, "tree", "cat", "geo")
+      poy_search = "transform(tcm:(1,1))\nsearch(max_time:0:0:5, memory:gb:2)\nselect(best:1)"
+    end
     poy_script="#{read_poy_script_segment}
 set(log: \"poy.log\")
-
-transform(tcm:(1,1))
-search(max_time:0:0:5, memory:gb:2)
-select(best:1)
+#{poy_search}
 transform (static_approx)
 report (\"report.nexus\", nexus, trees:(nexus))
 report(\"#{name}_results.kml\", kml:(supramap, \"#{sfiles.select { |file| file.filetype == "geo" }[0].name}\"))
-
 report(asciitrees)
 report(\"#{name}_results.tre\",trees)
 report(\"#{name}_results.stats\",treestats)
