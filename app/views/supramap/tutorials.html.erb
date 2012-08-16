@@ -187,16 +187,15 @@ EU051642,-0.8280967,11.5989086,2001-12-12</pre></p>
 </p>
 
 <ol>
-  <li>TNT + CSV + FASTA<br/>
+  <li>TNT + FASTA + CSV<br/>
   This file combination means phenotype data was used to generate the tree, so select the second coloring option:
   'color branches based on a categorical file'.</li>
-  <li>Tree + TNT<br/>
+  <li>TREE + TNT + CSV<br/>
     If POY was run with a fasta and csv file, and the resulting tree file and a tnt file were then run through POY again,
     select the second coloring option: 'color branches base on a categorical file'.
   </li>
-  <li>
-    FASTA + CSV<br/>
-    This file combination means phenotype was not used to generate the tree, so select the first coloring option:
+  <li>FASTA + CSV or FASTA + TREE + CSV<br/>
+    This file combination means phenotype data was not used to generate the tree, so select the first coloring option:
     'color branches based on an aligned column (starting at 1)', and enter an alignment.
   </li>
   <p>After selecting the appropriate coloring option and clicking the 'Color KML' button, another link
@@ -320,29 +319,3 @@ exit ()</pre>
 <p>&nbsp;</p>
 
 <p>Alternately can can visit this page <a href="csv_tre_to_kml">here</a> to create your simple kmls </p>
-
-<h2 id="section4">How to color tree branches in Supramap KMLs</h2>
-
-<p>Supramaps can be colored to denote a mutation of interest or a change in a character state. In order to color tree
-  branches you must do the following:</p>
-<ol>
-  <li>Download the <a href="http://supramap.osu.edu/sm/files/color-lines.rb" target="_blank">color-lines.rb</a> script.
-    (ruby required: <a href="http://www.ruby-lang.org">http://www.ruby-lang.org</a>)
-  </li>
-  <li>make sure you have the required gems installed 'optparse' and 'ostruct': usually by typing sudo gem install optparse ostruct </li>
-  <li>chmod a+x color-lines.rb</li>
-  <li>To color nucleotide based trees, run the following:<br/>
-    ./color-lines.rb --dna n --file path/to/kml<br/>
-    The argument “n” is an integer denoting the alignment column containing the mutations of interest, and the argument
-    “/path/to/kml” is the location of the kml file to be colored.
-  </li>
-  <li>To color character based trees, run the following:</li>
-  ./color-lines.rb --file path/to/kml</li>
-  <li>The script will create a new kml called OriginalName-colored.kml. Load this file in Google Earth. Red, green,
-    blue, and purple lines represent adenine, guanine, cytosine, and thymine/uracil respectively.
-  </li>
-</ol>
-<p>
-  To run Supramap on the clusters at the Department of Biomedical Informatics, Ohio State University College of Medicine
-  or The Ohio Supercomputer Center contact <a href="mailto:supramap@gmail.com">supramap@gmail.com</a>.
-</p>
