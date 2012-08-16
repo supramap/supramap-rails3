@@ -23,13 +23,12 @@ module PoyService
   def PoyService.submit_poy(job_id, minutes = 60)
     @hours = minutes.div(60);
     @minutes = minutes.modulo(60);
-    res = RestClient.get "#{BASE_URI}/SubmitPoy?jobId=#{job_id}&numberOfNodes=20&wallTimeHours=#{@hours}&wallTimeMinutes=#{@minutes}&postBackURL=supramap.osu.edu"
+    res = RestClient.get "#{BASE_URI}/SubmitPoy?jobId=#{job_id}&numberOfNodes=20&wallTimeHours=#{@hours}&wallTimeMinutes=#{@minutes}&postBackURL=supramap.osc.edu"
     return Nori.parse(res)[:string]
   end
 
   def PoyService.is_done?(job_id)
     res = RestClient.get "#{BASE_URI}/IsDoneYet?jobId=#{job_id}&command=poy"
-    puts res
     return Nori.parse(res)[:boolean]
   end
 

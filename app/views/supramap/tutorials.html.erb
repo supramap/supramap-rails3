@@ -1,3 +1,14 @@
+<style>
+    pre {
+        margin: 1em auto;
+        max-width: 600px;
+        font-family: Courier, Courier New;
+        line-height: 1.1em;
+        font-size: 0.9em;
+        color: #9f9;
+        background: black;
+    }
+</style>
 <p>
   <a href="#section1">How to run Supramap</a><br/>
   <a href="#section2">How to install POY (and make Supramaps offline)</a><br/>
@@ -61,7 +72,7 @@ cc -.;
 
 <p>A <a href="http://bmi.osu.edu/~janies/supramap2/lat.long.date.csv">comma separated values</a> (.csv) file that
   contains the geographic and temporal data for each taxon is necessary. The latitude and longitude coordinates must be
-  in decimal format. If you provide dates of isolation, Supramap will build a Keyhole Markup File (KML) that allow you
+  in decimal format. If you provide dates of isolation, Supramap will build a Keyhole Markup File (KML) that allows you
   to animate the tree's growth over time in <a href="http://earth.google.com">Google Earth</a> &#8482;. Microsoft
   Excel &#8482; can output csv format but make sure it's in unix format - a text editor such as BBedit &#8482;or Text
   Pad &#8482; can ensure this.</p>
@@ -116,7 +127,11 @@ EU051642,-0.8280967,11.5989086,2001-12-12</pre></p>
 
   <li>.fas (one or more), .tnt (one or more), and .csv</li>
 
-  <li><a href="http://supramap.osu.edu/sm/supramap/tutorials#section3">.tre and .csv</a></li>
+  <li>.tre and .csv</a></li>
+  <li>.tre, tnt and .csv</a></li>
+
+  Notes: File combinations in 4 and 5 cause POY to only run a diagnosis (no search).
+
 </ol>
 
 <h3>Projects, Jobs and Analyses</h3>
@@ -127,9 +142,9 @@ EU051642,-0.8280967,11.5989086,2001-12-12</pre></p>
   search) is performed, followed by diagnosis, and tree projection. If a tree is provided, that topology is used to
   diagnose the data and make the projection.</p>
 
-<p>Diagnosis is the proess of optimizing variation in the character data on given tree or the best tree that results
+<p>Diagnosis is the process of optimizing variation in the character data on given tree or the best tree that results
   from tree search. For example, the variation in the nucleotide or amino acid data can be assigned to branches of the
-  tree as mutations that occur between ancestor and descendent. Tree projection is the process of contorting the tree in
+  tree as mutations that occur between ancestor and descendant. Tree projection is the process of contorting the tree in
   space such that the terminal taxa are assigned to their points on the earth and the ancestral hierarchy is placed
   above the earth.</p>
 
@@ -137,14 +152,14 @@ EU051642,-0.8280967,11.5989086,2001-12-12</pre></p>
 
 <p> The projected tree and mutations are stored in a Keyhole Markup file (KML) file suitable for viewing with Google
   Earth &#8482; or similar virtual globe or maps software. We also provide statistics on the run and a tree in nested
-  parenthese format. Statistics include the optimal tree length found during the search and the number of times this
+  parentheses format. Statistics include the optimal tree length found during the search and the number of times this
   length was hit.
 </p>
 
 <p>
   <a href="http://bmi.osu.edu/~janies/supramap2/script.psh">Currently a supramap analysis is bound to a search time of 3
     minutes and 2Gb of memory</a>. This does not include the tree projection phase of the analysis so response time of
-  the web application will be > 3 minues before complete. Please feel free to contact if you have a need for more run
+  the web application will be > 3 minutes before complete. Please feel free to contact if you have a need for more run
   time and or would like to run custom scripts.</p>
 
 <p>In the case of the KML file, you will be asked to download the KML file to your local machine. One you have done
@@ -160,10 +175,36 @@ EU051642,-0.8280967,11.5989086,2001-12-12</pre></p>
   activate your KML. Once doing that make sure to spread the time bar to the right if you have used temporal references.
   Clicking on any of the nodes displays a summary of the mutations along the branch connecting that node to its
   ancestral node. Please contact us at supramap@gmail.com if you have any problems. </p>
-
 <p>&nbsp;</p>
 
-<h2 id="section2">How to install POY (and make Supramaps offline)</h2>
+<h3 id="kml-coloring">KML Coloring</h3>
+<p>
+  The web interface also provides functionality to color a kml file. The results section shows a 'Color KML' button next
+  to the
+  links to the KML files, that when pushed will display a page that shows two options for coloring a tree. How the KML
+  was generated will
+  determine which option to choose:
+</p>
+
+<ol>
+  <li>TNT + CSV + FASTA<br/>
+  This file combination means phenotype data was used to generate the tree, so select the second coloring option:
+  'color branches based on a categorical file'.</li>
+  <li>Tree + TNT<br/>
+    If POY was run with a fasta and csv file, and the resulting tree file and a tnt file were then run through POY again,
+    select the second coloring option: 'color branches base on a categorical file'.
+  </li>
+  <li>
+    FASTA + CSV<br/>
+    This file combination means phenotype was not used to generate the tree, so select the first coloring option:
+    'color branches based on an aligned column (starting at 1)', and enter an alignment.
+  </li>
+  <p>After selecting the appropriate coloring option and clicking the 'Color KML' button, another link
+    (appearing as 'Colored&nbsp;KML') will appear in the results section linking to the colored KML file.
+  The coloring step does not modify the original KML file, and can be downloaded as before.</p>
+</ol>
+
+<h2 id="section2">How to install POY5 (and make Supramaps offline)</h2>
 
 <p>You will need a computer running a recent Linux distribution or Mac OS X (10.4 or 10.5; the Supramap plug-in will not
   work under OS X 10.6 Snow Leopard). Under OS X, make sure you have the
@@ -187,23 +228,31 @@ make install</pre>
     <pre>svn checkout http://poy4.googlecode.com/svn/trunk/ poy4-read-only</pre>
   </li>
 
-  <li>Compile POY and the Supramap plug-in:<br/>
-    (parallel)
-    <pre>./configure --enable-interface=flat --enable-mpi CC=mpicc CFLAGS="-03 -msse"</pre>
+  <li>Alternatively, you can use <a href="http://mercurial.selenic.com/" target="_blank">Mercuial</a> and download
+    the latest POY source code by entering the following command:
+    <pre>hg clone https://code.google.com/p/poy/</pre>
+  </li>
+
+  <li>Compile POY and the Supramap plug-in by first configuring the install. Inside the <strong>src</strong> directory, run the following command:<br/>
+    (parallel, assumes an MPI implementation is installed)
+    <pre>./configure --enable-interface=flat --enable-mpi CC=mpicc CFLAGS="-03 -msse" --enable-long-sequences</pre>
     (or serial)
-    <pre>./configure</pre>
+    <pre>./configure --enable-interface=flat --enable-long-sequences</pre>
     then
 <pre>make
 make install
-cd src
 ocamlbuild supramap.cmxs
 cp _build/plugins/supramap.cmxs &lt;path&gt;</pre>
     (&lt;path&gt; is where you would store the plug-in, you will need this later when running)
   </li>
 
+  <li>A couple of notes: <br/>
+    a. An error about installing man pages might occur, which can be safely ignored.<br/>
+    b. Running 'make install' might require sudo privileges</li>
+
   <li>Run POY with the Supramap plug-in to check if it loads correctly:
     <pre>poy -plugin &lt;path&gt;</pre>
-    If you get no errors then everything compiled correctly and is in working order; type
+    If you get no errors then everything compiled correctly and is in working order. You can now type
     <pre>exit()</pre>
     to exit the application. If you get an error, then something didn't compile correctly or there might be a path
     problem.

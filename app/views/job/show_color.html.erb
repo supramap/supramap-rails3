@@ -21,7 +21,7 @@
 </style>
 <div><%= error_messages_for 'job' %></div>
 <fieldset>
-  <legend>color kml</legend>
+  <legend>color kml&nbsp;&nbsp; <font size="2">(<%= link_to "tutorial", "/supramap/tutorials#kml-coloring" %>)</font></legend>
   <%= form_for @job, :url => color_kml_url(@job) do |f| %>
       <div class="color-kml">
         job:&nbsp;&nbsp;<%= @job.name %><br/><br/>

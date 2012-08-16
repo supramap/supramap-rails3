@@ -28,9 +28,8 @@ class ProjectController < ApplicationController
     @project = Project.find(params[:id])
     name = @project.name
 
-    if @project.jobs.status("Running").empty?
-      @project.destroy
-      flash[:notice] = "Project #{name} was successfully deleted."            
+    if @project.destroy
+      flash[:notice] = "Project #{name} was successfully deleted."
     else
       flash[:notice] = "All project jobs must be stopped before #{name} can be deleted."
     end

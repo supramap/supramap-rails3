@@ -114,9 +114,12 @@ exit()"
         end
         self.status = "Completed"
         self.save
-      rescue
+      rescue Exception => e
         self.status = "Failed"
         self.save
+        logger.error("An error occurred checking/downloading the results of a poyws job.")
+        logger.error(e.message)
+        logger.error(e.backtrace)
       end
     end
   end
