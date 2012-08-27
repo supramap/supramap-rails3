@@ -74,9 +74,10 @@ class Job < ActiveRecord::Base
     end
     poy_script="#{read_poy_script_segment}
 set(log: \"poy.log\")
-#{poy_search}
-transform (static_approx)
-report (\"report.nexus\", nexus, trees:(nexus))
+#{poy_search}"
+
+    poy_script << "\ntransform (static_approx)\n" unless Sfile.subset_file_types?(file_types, "pre")
+    poy_script << "report (\"report.nexus\", nexus, trees:(nexus))
 report(\"#{name}_results.kml\", kml:(supramap, \"#{sfiles.select { |file| file.filetype == "geo" }[0].name}\"))
 report(asciitrees)
 report(\"#{name}_results.tre\",trees)

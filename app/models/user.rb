@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   # since the password isn't permanently stored, this validation
   # is not applicable for anything beyond user creation
   
-  validates_format_of:password,
+  validates_format_of :password,
   # modified from http://regexlib.com/REDetails.aspx?regexp_id=2204
   :with => /(?-i)(?=^.{6,}$)((?!.*\s)(?=.*[a-zA-Z]))((?=(.*\d){1,})|(?=(.*\W){1,}))^.*$/,
   :message => "(please enter a valid password with 6-20 characters and at least one non-letter)",
@@ -18,19 +18,16 @@ class User < ActiveRecord::Base
   # logins are used in the file path, so they must be valid Unix file names
   # alphanumeric to keep it simple, adding periods would complicate things since
   # hidden files have periods at the beginning
-  validates_format_of:login,
+  validates_format_of :login,
   # taken from http://regexlib.com/REDetails.aspx?regexp_id=145
   :with => /^[a-zA-Z0-9]+$/,
   :message => "(alphanumeric only)"
 
-  validates_format_of:email,
+  validates_format_of :email,
   # taken from http://www.devx.com/enterprise/Article/31197/0/page/3
   :with => /\A[\w\._%-]+@[\w\.-]+\.[a-zA-Z]{2,4}\z/,
   :message => "(please enter a valid address)"
 
-  # user must accept eula  
-  validates_acceptance_of :eula
-  
   attr_accessor :password_confirmation
   attr_reader :password
 
